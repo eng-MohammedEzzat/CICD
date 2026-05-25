@@ -1,7 +1,7 @@
 
 
 const health=(req,res,next)=>{
-    res.send("hello in  health app ")
+    res.send("hello in our app in health ")
 }
 
 const healthStatus=(req,res,next)=>{
