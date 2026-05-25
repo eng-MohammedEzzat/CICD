@@ -1,0 +1,14 @@
+
+
+const health=(req,res,next)=>{
+    res.send("hello in  health app ")
+}
+
+const healthStatus=(req,res,next)=>{
+    res.json({"status":"ok"})
+}
+
+module.exports={
+    health,
+    healthStatus
+}
