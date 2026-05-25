@@ -4,7 +4,7 @@ This is a small Node.js and Express application that exposes a basic home route 
 
 ## Live URL
 
-http://localhost:3000
+https://cicd-ymsy.onrender.com
 
 ## Successful Pipeline Run
 
@@ -14,7 +14,7 @@ http://localhost:3000
 
 ## How the pipeline works
 
-When code is pushed to `main` or a pull request targets `main`, GitHub Actions starts the CI/CD workflow. The first job checks out the repository so the runner has the latest source code. It then installs Node.js and restores npm caching to make dependency installation faster. After that, it runs `npm ci` to install dependencies from the lockfile in a repeatable way. The workflow runs the test suite with `npm test` so broken changes are caught before deployment. If the tests pass, the workflow builds the Docker image using the project Dockerfile. The deploy job waits for the test job to finish successfully because it uses `needs: test`. Deployment only runs for direct pushes to the `main` branch, so pull requests can validate the code without publishing it. The deploy step uses GitHub Secrets for the webhook URL and token, which keeps deployment credentials out of the repository.
+When code is pushed to `main` or a pull request targets `main`, GitHub Actions starts the CI/CD workflow. The first job checks out the repository so the runner has the latest source code. It then installs Node.js and restores npm caching to make dependency installation faster. After that, it runs `npm ci` to install dependencies from the lockfile in a repeatable way. The workflow runs the test suite with `npm test` so broken changes are caught before deployment. If the tests pass, the workflow builds the Docker image using the project Dockerfile. The deploy job waits for the test job to finish successfully because it uses `needs: test`. Deployment only runs for direct pushes to the `main` branch, so pull requests can validate the code without publishing it. The deploy step calls the Render deploy hook from a GitHub Secret, so pushing to `main` updates the live Render site without clicking a deploy button. The hook URL stays out of the repository so deployment credentials are not stored in plain text.
 
 ## What I would do next
 
